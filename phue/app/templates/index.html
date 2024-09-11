@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    
+    <div>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#">.About()</a></li>
+          <li><a href="#">.Portfolio()</a></li>
+          <li><a href="#">.Käse()</a></li>
+          <li><a href="#">.Contact()</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="text-container">
+        <h1 id="name"></h1>
+        <h2 id="description"></h2>
+      </div>
+    </div>
+
+    <div class="navbar-line">
+      <nav class="navbar-2" class="sticky">
+        <ul>
+          <li><a href="#">.About()</a></li>
+          <li><a href="#">.Portfolio()</a></li>
+          <li><a href="#">.Käse()</a></li>
+          <li><a href="#">.Contact()</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1>Programmiersprachen</h1>
+    <div class="portfolio">
+
+      <div>
+    
+      <div class="field">HTML</div>
+      <div class="field">CSS</div>
+      <div class="field">JS</div>
+    </div>
+    </div>
+<style>
+  html {
+  scroll-behavior: smooth;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: sans-serif;
+  color: white;
+}
+
+.text-container {
+  text-align: center;
+  margin-top: -35%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.text-container h1 {
+  font-size: 45px;
+}
+
+.text-container h2 {
+  font-size: 35px;
+}
+
+.navbar ul {
+  padding-right: 1%;
+}
+
+.navbar ul li {
+  display: inline-block;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.navbar {
+  font-family: sans-serif;
+  text-align: right;
+}
+
+.navbar-line {
+  background-color: #333333;
+}
+
+.navbar-2 ul li {
+  display: inline-block;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.navbar-2 {
+  text-align: center;
+  
+}
+
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.portfolio {
+  background-color: #333333;
+  text-align: center;
+  padding: 250px 0px 250px 0px;
+}
+
+h1 {
+  background-color: #333333;
+  padding: 50px;
+  margin: -16px 0px 0px ;
+  text-align: center;
+}
+
+.portfolio h1 {
+  padding-top: -35px;
+  
+}
+
+.field {
+  background-color: #555555;
+  padding: 200px 100px;
+}
+
+.portfolio .field {
+  display: inline;
+}
+</style>
+<script>
+  const nameSequence = "I like noodles";
+const textSequence = ["HTML", "CSS", "JavaScript", "Python", "C++/Cpp"];
+
+let nameIndex = 0;
+let textIndex = 0;
+let letterIndex = 0;
+let currentName = "";
+let currentText = "";
+let currentLetter = "";
+
+function type() {
+  if (nameIndex < nameSequence.length) {
+    currentName = nameSequence.slice(0, ++nameIndex);
+    document.getElementById("name").textContent = currentName;
+    setTimeout(type, 100);
+  } else {
+    document.getElementById("description").textContent = "I can do  ";
+    typeText();
+  }
+}
+
+function typeText() {
+  if (letterIndex < textSequence[textIndex].length) {
+    currentText += textSequence[textIndex][letterIndex++];
+    document.getElementById("description").textContent =
+      "I can do " + currentText;
+    setTimeout(typeText, 100);
+  } else {
+    setTimeout(erase, 1000);
+  }
+}
+
+function erase() {
+  if (letterIndex > 0) {
+    currentText = currentText.slice(0, --letterIndex);
+    document.getElementById("description").textContent =
+      "I can do " + currentText;
+    setTimeout(erase, 100);
+  } else {
+    textIndex = (textIndex + 1) % textSequence.length;
+    setTimeout(typeText, 500);
+  }
+}
+
+window.onload = type;
+
+
+</script>
+  </body>
+</html>
