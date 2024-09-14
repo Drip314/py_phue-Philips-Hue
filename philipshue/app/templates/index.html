@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>phhue</title>
+    <style>
+        * {
+            font-size: 50px;
+        }
+        button {
+            width: 500px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    Philips Hue Steuern Wichtig port öffnen für Philip
+
+    
+    <form method = "post">
+        {% csrf_token %}
+        <button type="submit" name="main" class="lamp" value="I/O">I/O</button>
+    </form>
+    
+</body>
+</html>
