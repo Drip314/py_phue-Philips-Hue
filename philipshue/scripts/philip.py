@@ -1,4 +1,5 @@
 from phue import Bridge
+import random
 
 
 b = Bridge('192.168.115.110')
@@ -11,4 +12,4 @@ def get_lights():
 
 
 def on_off(lights):
-    b.set_light(lights, 'on', not b.get_light(1, 'on'))
+    b.set_light(lights, 'on', not b.get_light(lights[random.randint(0, len(lights) - 1)], 'on'))
