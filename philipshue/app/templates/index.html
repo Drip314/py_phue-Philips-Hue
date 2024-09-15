@@ -3,25 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>phhue</title>
-    <style>
-        * {
-            font-size: 50px;
-        }
-        button {
-            width: 500px;
-            height: 250px;
-        }
-    </style>
+    <title>Hue controller</title>
 </head>
 <body>
-    Philips Hue Steuern Wichtig port öffnen für Philip
-
-    
     <form method = "post">
         {% csrf_token %}
-        <button type="submit" name="main" class="lamp" value="I/O">I/O</button>
+        <ul>
+            {% for item in lights %}
+
+            <li><input name="lamp" type="checkbox" value="{{ item.name }}">{{ item.name }}</li>
+
+            {% endfor %}
+        </ul>
+        <button type="submit" name="main" class="lamp" value="toggle">On - Off</button>
     </form>
-    
 </body>
 </html>

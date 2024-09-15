@@ -3,8 +3,11 @@ from django.shortcuts import render
 
 
 def myview(request):
-    if request.POST.get('main') == "I/O":           
-        philip.on_off()
+    if request.POST.get('main') == "toggle":
+        philip.on_off(request.POST.getlist('lamp'))
 
-    print(request.POST.get('main'))
-    return render(request, 'index.html')
+    context = {
+        'lights': philip.get_lights()
+    }
+
+    return render(request, 'index.html', context=context)
