@@ -15,7 +15,11 @@
 
             {% endfor %}
         </ul>
-        <button type="submit" name="main" class="lamp" value="toggle">On - Off</button>
+        <input type="color" name="rgb">
+        <input type="range" min="0" max="255" name="bri">
+
+        <button type="submit" name="main" value="apply">apply changes</button>
+        <button type="submit" name="main" value="toggle">On - Off</button>
     </form>
 </body>
 </html>
