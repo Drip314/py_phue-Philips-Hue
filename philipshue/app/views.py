@@ -1,4 +1,4 @@
-from scripts import philip
+from scripts import philip, HexToHue
 from django.shortcuts import render
 
 
@@ -9,12 +9,12 @@ def myview(request):
         philip.on_off(lights)
 
     if request.POST.get('main') == "apply":
-        hue = request.POST.get('hue')
+        color = HexToHue.Color(request.POST.get('rgb'))
         bri = request.POST.get('bri')
-        print(hue)
+        print(color)
         print(bri)
-        if hue:
-            philip.change_color(lights, int(hue))
+        if color:
+            philip.change_color(lights, int(color.to_hue()))
         if bri:
             philip.change_brightness(lights, int(bri))
 
