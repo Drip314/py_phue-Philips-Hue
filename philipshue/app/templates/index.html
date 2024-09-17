@@ -11,15 +11,74 @@
         <ul>
             {% for item in lights %}
 
-            <li><input name="lamp" type="checkbox" value="{{ item.name }}">{{ item.name }}</li>
+            <li><input checked="" name="lamp" type="checkbox" value="{{ item.name }}">{{ item.name }}</li>
 
             {% endfor %}
         </ul>
-        <input type="color" name="rgb">
-        <input type="range" min="0" max="255" name="bri">
+
+        <div class="color-picker">
+            <label for="hue">Hue:</label>
+            <input type="range" id="hue" name="hue" min="0" max="360" value="237">
+            <label for="saturation">Saturation:</label>
+            <input type="range" id="saturation" name="sat" min="0" max="100" value="60">
+            <label for="brightness">Brightness:</label>
+            <input type="range" id="brightness" name="bri" min="0" max="100" value="50">
+            <div id="color-display"></div>
+        </div>
 
         <button type="submit" name="main" value="apply">apply changes</button>
         <button type="submit" name="main" value="toggle">On - Off</button>
     </form>
 </body>
+
+<style>
+
+    body {
+    font-family: Arial, sans-serif;
+}
+
+.color-picker {
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+#color-display {
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    background-color: hsl(237, 60%, 50%);
+}
+
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hueInput = document.getElementById('hue');
+    const saturationInput = document.getElementById('saturation');
+    const brightnessInput = document.getElementById('brightness');
+    const colorDisplay = document.getElementById('color-display');
+
+    function updateColor() {
+        const hue = hueInput.value;
+        const saturation = saturationInput.value;
+        const brightness = brightnessInput.value;
+        colorDisplay.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${brightness}%)`;
+    }
+
+    hueInput.addEventListener('input', updateColor);
+    saturationInput.addEventListener('input', updateColor);
+    brightnessInput.addEventListener('input', updateColor);
+
+    updateColor(); // Initialize color
+});
+
+</script>
+
 </html>
