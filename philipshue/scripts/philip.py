@@ -15,6 +15,9 @@ class HueBridge:
     def get_lights(self):
         return self.bridge.lights
 
+    def get_id_by_name(self, light):
+        return self.bridge.get_light_id_by_name(light)
+
     def get_parameter_state(self, param):
         lights = self.get_lights()
         light_states = []
@@ -25,7 +28,7 @@ class HueBridge:
     def change_state(self, lights, param, value):
         if len(lights) == 0:
             return
-        return self.bridge.set_light(lights, param, value)
+        self.bridge.set_light(lights, param, value)
 
     def get_light_state(self):
         return self.get_parameter_state('on')
@@ -40,6 +43,7 @@ class HueBridge:
         self.change_state(lights, 'on', not self.bridge.get_light(lights[random.randint(0, len(lights) - 1)], 'on'))
 
     def change_hue(self, lights, hue):
+        print(lights)
         self.change_state(lights, 'hue', hue)
 
     def change_bri(self, lights, bri):
